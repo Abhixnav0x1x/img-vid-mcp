@@ -45,14 +45,14 @@ def _safe_filename(url: str, content_type: str = "") -> str:
 def _resolve_dest(dest_subfolder: str | None, filename: str) -> Path:
     raw_sub = dest_subfolder or "general"
     if ".." in raw_sub or raw_sub.startswith(("/", "\\")) or (len(raw_sub) > 1 and raw_sub[1] == ":"):
-        raise ValueError("dest escapes MEDIA_ROOT — rejected")
+        raise ValueError("dest escapes MEDIA_ROOT - rejected")
     if ".." in filename or "/" in filename or "\\" in filename:
-        raise ValueError("filename escapes MEDIA_ROOT — rejected")
+        raise ValueError("filename escapes MEDIA_ROOT - rejected")
     sub = _slug(raw_sub, 40)
     dest = (SETTINGS.media_root / sub / filename).resolve()
     # Sandbox: must stay inside MEDIA_ROOT
     if dest != SETTINGS.media_root and SETTINGS.media_root not in dest.parents:
-        raise ValueError("dest escapes MEDIA_ROOT — rejected")
+        raise ValueError("dest escapes MEDIA_ROOT - rejected")
     dest.parent.mkdir(parents=True, exist_ok=True)
     return dest
 
@@ -150,7 +150,7 @@ def download_one(source_url: str, dest_subfolder: str | None = None,
 def download_many(urls: list[str], dest_subfolder: str | None = None,
                   max_files: int | None = None,
                   meta: list[dict] | None = None) -> dict:
-    """Bulk download. Images are ALWAYS losslessly optimised before return —
+    """Bulk download. Images are ALWAYS losslessly optimised before return -
     there is no opt-out; the agent only ever receives optimised files."""
     SETTINGS.ensure_dirs()
     cap = max_files or SETTINGS.max_files
@@ -185,7 +185,7 @@ def download_many(urls: list[str], dest_subfolder: str | None = None,
         "lossless_optimised": True,
     }
     # download_one already optimises every image in-place; this safety net
-    # covers any file that slipped through. Always runs — no opt-out.
+    # covers any file that slipped through. Always runs - no opt-out.
     try:
         from optimizer import optimize_manifest
         optimize_manifest(manifest)

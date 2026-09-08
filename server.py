@@ -1,4 +1,4 @@
-"""imagemcp MCP server — 100% free + self-hostable.
+"""imagemcp MCP server - 100% free + self-hostable.
 
 Tools:
   status, search_images, search_videos, search_web,
@@ -6,7 +6,7 @@ Tools:
   get_manifest, get_credits, optimize_image
 All downloads are auto losslessly optimised (imageoptimiser) before paths
 are handed to the agent. Video pages (YouTube + more) download as direct
-.mp4 files via fast yt-dlp — no embeds needed.
+.mp4 files via fast yt-dlp - no embeds needed.
 """
 from __future__ import annotations
 import json
@@ -95,7 +95,7 @@ def status() -> dict:
         yt_ok, yt_msg = False, str(e)[:150]
     return {
         "name": "imagemcp",
-        "version": "1.3.0",
+        "version": "1.4.0",
         "tier": "free",
         "self_hostable": True,
         "ddgs_available": ddgs_ok,
@@ -141,7 +141,7 @@ def search_images(query: str, max_results: int = 6, license_image: str | None = 
 @mcp.tool()
 def search_videos(query: str, max_results: int = 4) -> dict:
     """Free web video search. Every hit can be downloaded as a direct file:
-    pass any result URL to download_video (YouTube, Vimeo, TikTok, ...) — no embeds needed."""
+    pass any result URL to download_video (YouTube, Vimeo, TikTok, ...) - no embeds needed."""
     from providers import ddg_provider
     max_results = max(1, min(int(max_results or 4), 20))
     results = ddg_provider.search_videos(query, max_results=max_results)
@@ -165,7 +165,7 @@ def camoufox_fetch(query_or_url: str, scroll_pages: int = 2, screenshot: bool = 
 @mcp.tool()
 def download_media(source_url: str, dest_subfolder: str | None = None, filename: str | None = None) -> dict:
     """Download one image/video the agent picked. Images are losslessly optimised
-    instantly after download — the returned path is always the optimised file.
+    instantly after download - the returned path is always the optimised file.
     Video pages (YouTube, Vimeo, TikTok, ...) auto-download as direct .mp4 files.
     Sandboxed to MEDIA_ROOT. Returns local + relative path + HTML snippet."""
     SETTINGS.ensure_dirs()
@@ -175,7 +175,7 @@ def download_media(source_url: str, dest_subfolder: str | None = None, filename:
 @mcp.tool()
 def download_video(source_url: str, dest_subfolder: str | None = None,
                    quality: str = "720p") -> dict:
-    """Download a video page as a direct .mp4 file — YouTube, Vimeo, TikTok, X, Dailymotion, Twitch, Rumble...
+    """Download a video page as a direct .mp4 file - YouTube, Vimeo, TikTok, X, Dailymotion, Twitch, Rumble...
     Fast: single metadata pass, progressive mp4 preferred (no re-encode), 8 parallel fragments.
     quality: 360p | 480p | 720p (default) | 1080p | best. Only download videos you have rights to (own/CC/licensed)."""
     SETTINGS.ensure_dirs()
@@ -206,7 +206,7 @@ def download_all(urls: list[str], dest_subfolder: str | None = None) -> dict:
 
 @mcp.tool()
 def optimize_image(relative_path: str, quality: int = 80) -> dict:
-    """Maintenance only — every download is already optimised automatically,
+    """Maintenance only - every download is already optimised automatically,
     so the agent never needs this after download_media/download_all.
     Re-runs lossless optimisation on an older file under MEDIA_ROOT in-place
     (e.g. 'smoke/400.jpg'). Returns before/after bytes + method."""

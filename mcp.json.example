@@ -2,7 +2,7 @@
   "mcpServers": {
     "imagemcp": {
       "command": "python",
-      "args": ["<ABSOLUTE_PATH_TO>/imagemcp/server.py"],
+      "args": ["<ABSOLUTE_PATH_TO>/img-vid-mcp/server.py"],
       "env": {
         "MEDIA_ROOT": "./public/assets",
         "IMAGEOPTIMISER_PATH": "../imageoptimiser",

@@ -1,6 +1,6 @@
 [project]
 name = "imagemcp"
-version = "1.3.0"
+version = "1.4.0"
 description = "Free self-hostable MCP: web image/video search + fast direct-file video downloads (yt-dlp) + bulk + auto lossless image optimisation"
 readme = "README.md"
 license = { text = "MIT" }

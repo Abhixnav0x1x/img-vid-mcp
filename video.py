@@ -1,9 +1,9 @@
-"""Fast video downloads via yt-dlp — direct .mp4 files, no embeds.
+"""Fast video downloads via yt-dlp - direct .mp4 files, no embeds.
 
 Speed algo (why it's fast):
   1. ONE metadata pass only: probe with extract_info(download=False), then
      download with process_video_result(info, download=True) on the SAME
-     YoutubeDL instance — no double page fetch.
+     YoutubeDL instance - no double page fetch.
   2. Progressive-first format selector: single-file mp4 whenever the site
      offers it (no ffmpeg step at all). Split DASH streams only as fallback,
      remuxed (not re-encoded) to mp4.
@@ -18,7 +18,7 @@ use the plain HTTP downloader (fastest path).
 
 Only download videos you have the right to use (your own, Creative Commons,
 or explicitly licensed). YouTube ToS restricts downloading; the agent and
-operator own that decision — see COMPLIANCE.md.
+operator own that decision - see "Staying out of trouble" in README.
 """
 from __future__ import annotations
 import re
@@ -33,7 +33,7 @@ from license_guard import build_attribution, append_credits
 QUALITY_HEIGHTS = {"360p": 360, "480p": 480, "720p": 720, "1080p": 1080, "best": 4320}
 
 # Hosts where a page URL is almost certainly a video -> route straight to yt-dlp.
-# (facebook/instagram stay out: login-walled, blocked in license_guard — embed those.)
+# (facebook/instagram stay out: login-walled, blocked in license_guard - embed those.)
 KNOWN_VIDEO_HOSTS = (
     "youtube.com", "youtu.be", "youtube-nocookie.com", "m.youtube.com",
     "music.youtube.com", "vimeo.com", "player.vimeo.com",
@@ -132,10 +132,10 @@ def _resolve_video_dir(dest_subfolder: str | None) -> Path:
     from downloader import _slug
     raw = dest_subfolder or "videos"
     if ".." in raw or raw.startswith(("/", "\\")) or (len(raw) > 1 and raw[1] == ":"):
-        raise ValueError("dest escapes MEDIA_ROOT — rejected")
+        raise ValueError("dest escapes MEDIA_ROOT - rejected")
     d = (SETTINGS.media_root / _slug(raw, 40)).resolve()
     if d != SETTINGS.media_root and SETTINGS.media_root not in d.parents:
-        raise ValueError("dest escapes MEDIA_ROOT — rejected")
+        raise ValueError("dest escapes MEDIA_ROOT - rejected")
     d.mkdir(parents=True, exist_ok=True)
     return d
 
@@ -151,7 +151,7 @@ def _friendly_error(source_url: str, e: Exception) -> dict:
                 "error": "unsupported URL for yt-dlp (not a video page)"}
     if "Private video" in msg or "Login required" in msg:
         return {"ok": False, "source_url": source_url,
-                "error": "private/login-walled video — needs cookies or another result"}
+                "error": "private/login-walled video - needs cookies or another result"}
     return {"ok": False, "source_url": source_url, "error": f"yt-dlp: {msg}"[:300]}
 
 
@@ -188,7 +188,7 @@ def download_video_page(source_url: str, dest_subfolder: str | None = None,
                 info = entries[0]  # noplaylist would do this anyway; take first fast
             if info.get("is_live"):
                 return {"ok": False, "source_url": source_url,
-                        "error": "live streams are not downloadable — embed instead"}
+                        "error": "live streams are not downloadable - embed instead"}
             dur = info.get("duration") or 0
             if dur and dur > 3 * 3600:
                 return {"ok": False, "source_url": source_url,

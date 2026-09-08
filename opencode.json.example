@@ -3,8 +3,8 @@
   "mcp": {
     "imagemcp": {
       "type": "local",
-      "command": ["python", "<ABSOLUTE_PATH_TO>/imagemcp/server.py"],
-      "cwd": "<ABSOLUTE_PATH_TO>/imagemcp",
+      "command": ["python", "<ABSOLUTE_PATH_TO>/img-vid-mcp/server.py"],
+      "cwd": "<ABSOLUTE_PATH_TO>/img-vid-mcp",
       "enabled": true,
       "timeout": 30000,
       "environment": {

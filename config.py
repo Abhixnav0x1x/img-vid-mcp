@@ -1,4 +1,4 @@
-"""Central config for imagemcp — 100% free + self-hostable."""
+"""Central config for imagemcp - 100% free + self-hostable."""
 from __future__ import annotations
 import os
 import sys
@@ -27,7 +27,7 @@ class Settings:
     base_dir: Path = BASE_DIR
     media_root: Path = (BASE_DIR / _get("MEDIA_ROOT", "./public/assets")).resolve()
     storage_dir: Path = (BASE_DIR / _get("STORAGE_DIR", "./.storage")).resolve()
-    # kept for backward compat — ignored, everything is free now
+    # kept for backward compat - ignored, everything is free now
     license_key: str = _get("IMAGEMCP_LICENSE_KEY", "")
     premium_flag: bool = True
     enable_camoufox: bool = _get("ENABLE_CAMOUFOX", "0") == "1"
