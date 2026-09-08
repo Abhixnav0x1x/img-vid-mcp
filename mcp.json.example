@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "imagemcp": {
+      "command": "python",
+      "args": ["<ABSOLUTE_PATH_TO>/imagemcp/server.py"],
+      "env": {
+        "MEDIA_ROOT": "./public/assets",
+        "IMAGEOPTIMISER_PATH": "../imageoptimiser",
+        "IMGOPT_ENABLED": "1",
+        "ENABLE_CAMOUFOX": "0"
+      }
+    }
+  }
+}

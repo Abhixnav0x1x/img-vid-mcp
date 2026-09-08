@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+.env
+
+# Runtime data (regenerated on use)
+.storage/
+public/assets/*
+!public/assets/.gitkeep
+*.mp4
+*.webp
+
+# Personal / local-only (never commit)
+opencode.json
+cafe/
+.vscode/
+.idea/

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "imagemcp": {
+      "type": "local",
+      "command": ["python", "<ABSOLUTE_PATH_TO>/imagemcp/server.py"],
+      "cwd": "<ABSOLUTE_PATH_TO>/imagemcp",
+      "enabled": true,
+      "timeout": 30000,
+      "environment": {
+        "MEDIA_ROOT": "./public/assets",
+        "STORAGE_DIR": "./.storage",
+        "IMAGEOPTIMISER_PATH": "../imageoptimiser",
+        "IMGOPT_ENABLED": "1",
+        "IMGOPT_QUALITY": "80",
+        "ENABLE_CAMOUFOX": "0",
+        "MAX_FILES": "100"
+      }
+    }
+  }
+}
